@@ -18,7 +18,7 @@ public class Main {
             myEntities.add(new Bird(myUniverse));
         }
 
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < 2; i++)
         {
             myEntities.add(new Predator(myUniverse));
         }
