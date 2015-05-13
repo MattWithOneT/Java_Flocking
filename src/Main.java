@@ -30,7 +30,7 @@ public class Main {
 
         for(int i = 0; i < 3; i++)
         {
-            myEntities.add(new Obstacle(myUniverse, 30));
+            myEntities.add(new Obstacle(myUniverse, (Math.random() * 20) + 20));
         }
 
         Lifeform.setWorldInhabitants(myEntities);

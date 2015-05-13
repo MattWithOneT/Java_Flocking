@@ -8,7 +8,7 @@ public abstract class Terrain extends Env_Entity
         super(canvas, position);
     }
 
-    public Terrain(Canvas canvas, CartesianDouble position, int size)
+    public Terrain(Canvas canvas, CartesianDouble position, double size)
     {
         super(canvas, position, size);
     }

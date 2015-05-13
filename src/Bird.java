@@ -88,7 +88,7 @@ public class Bird extends Lifeform
         {
             if(entity instanceof Predator)
             {
-                vecList.add(this.getCurrentPosition().vecTo(entity.getCurrentPosition()).normalise(-Math.exp((2 * this.getView_Distance() + entity.getSize())) / this.distanceTo(entity)));
+                vecList.add(this.getCurrentPosition().vecTo(entity.getCurrentPosition()).normalise(-Math.exp((2 * this.getView_Distance()) / this.distanceTo(entity))));
             }
 
             if(entity instanceof Terrain)

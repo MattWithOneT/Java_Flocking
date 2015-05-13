@@ -7,7 +7,7 @@ public abstract class Env_Entity
     private CartesianDouble currentPosition;
     private Canvas environment;
     private String colour;
-    private int size;
+    private double size;
 
 /************************************************************************************
  * Constructors
@@ -34,7 +34,7 @@ public abstract class Env_Entity
         this.size = 10;
     }
 
-    public Env_Entity(Canvas canvas, CartesianDouble position, int size)
+    public Env_Entity(Canvas canvas, CartesianDouble position, double size)
     {
         this.environment = canvas;
         this.currentPosition = position;
@@ -42,7 +42,7 @@ public abstract class Env_Entity
         this.colour = "Black";
     }
 
-    public Env_Entity(Canvas canvas, CartesianDouble position, int size, String colour)
+    public Env_Entity(Canvas canvas, CartesianDouble position, double size, String colour)
     {
         this.environment = canvas;
         this.currentPosition = position;
@@ -64,7 +64,7 @@ public abstract class Env_Entity
         this.colour = colour;
     }
 
-    public void setSize(int size)
+    public void setSize(double size)
     {
         this.size = size;
     }
@@ -83,7 +83,7 @@ public abstract class Env_Entity
         return this.currentPosition;
     }
 
-    public int getSize()
+    public double getSize()
     {
         return size;
     }

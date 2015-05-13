@@ -18,7 +18,7 @@ public abstract class Lifeform extends Env_Entity
     private double speed;
 
     private static boolean neighbourLines = false;
-    private static boolean viewArc = false;
+    private static boolean viewArc = true;
 
     private double separationFactor;
     private double cohesionFactor;
@@ -31,7 +31,7 @@ public abstract class Lifeform extends Env_Entity
     {
         super(canvas);
         this.velocity = new CartesianVector((Math.random() * 2) -1, (Math.random() * 2) - 1).normalise(1);
-        this.view_angle = Math.toRadians(160);
+        this.view_angle = Math.toRadians(360);
     }
 
 /************************************************************************************
@@ -159,9 +159,9 @@ public abstract class Lifeform extends Env_Entity
 
         // array holding angles and distances to draw a turtle
         // Lower section credited to Chris Harte from Java Lab 3
-        int[][] polarArray = new int[][]
+        double[][] polarArray = new double[][]
                 {
-                        { 150, 120, 120 },
+                        { 150.0, 120.0, 120.0 },
                         {this.getSize(), this.getSize(),this.getSize()}
                 };
 
@@ -186,6 +186,7 @@ public abstract class Lifeform extends Env_Entity
                             Math.toDegrees(this.getView_angle()),
                             "Red"
                     );
+//            this.getEnvironment().drawCircle(this.getCurrentPosition(), this.getView_Distance(), this.getColour());
         }
 
         if(neighbourLines)
