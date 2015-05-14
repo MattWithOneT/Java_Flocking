@@ -20,6 +20,12 @@ public class Obstacle extends Terrain
         this.setPosition(newPosition);
     }
 
+    public Obstacle(Canvas canvas, CartesianDouble position)
+    {
+        super(canvas, position);
+        this.setSize((Math.random() * 20) + 10);
+    }
+
 
     @Override
     public void draw()

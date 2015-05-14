@@ -2,7 +2,6 @@
  * Created by Y1475945.
  */
 
-import javax.xml.stream.events.EndDocument;
 import java.util.ArrayList;
 
 public abstract class Lifeform extends Env_Entity
@@ -18,10 +17,7 @@ public abstract class Lifeform extends Env_Entity
     private double speed;
 
     private static boolean neighbourLines = false;
-    private static boolean viewArc = true;
-
-    private double separationFactor;
-    private double cohesionFactor;
+    private static final boolean viewArc = false;
 
 /************************************************************************************
  * Instantiation Functions
@@ -30,6 +26,13 @@ public abstract class Lifeform extends Env_Entity
     public Lifeform(Canvas canvas)
     {
         super(canvas);
+        this.velocity = new CartesianVector((Math.random() * 2) -1, (Math.random() * 2) - 1).normalise(1);
+        this.view_angle = Math.toRadians(360);
+    }
+
+    public Lifeform(Canvas canvas, CartesianDouble pos)
+    {
+        super(canvas, pos);
         this.velocity = new CartesianVector((Math.random() * 2) -1, (Math.random() * 2) - 1).normalise(1);
         this.view_angle = Math.toRadians(360);
     }
@@ -195,7 +198,7 @@ public abstract class Lifeform extends Env_Entity
             {
                 if(this.distanceTo(thing) <= this.getView_Distance())
                 {
-                    this.getEnvironment().drawLineBetweenPoints(localPosition, thing.getCurrentPosition(), "Green");
+                    this.getEnvironment().drawLineBetweenPoints(localPosition, thing.getCurrentPosition(), "Orange");
 
                 }
             }
@@ -244,16 +247,6 @@ public abstract class Lifeform extends Env_Entity
             return Math.atan2(this.getVelocity().getY(),this.getVelocity().getX());
     }
 
-    public double getSeparationFactor()
-    {
-        return this.separationFactor;
-    }
-
-    public double getCohesionFactor()
-    {
-        return this.cohesionFactor;
-    }
-
     public double getSpeed()
     {
         return speed;
@@ -278,10 +271,7 @@ public abstract class Lifeform extends Env_Entity
         Lifeform.worldInhabitants = worldInhabitants;
     }
 
-    public void setCohesionFactor(double cohesionFactor)
-    {
-        this.cohesionFactor = cohesionFactor;
-    }
+
 
     public void setView_distance(double view_distance)
     {
@@ -293,10 +283,7 @@ public abstract class Lifeform extends Env_Entity
         this.view_angle = view_angle;
     }
 
-    public void setSeparationFactor(double separationFactor)
-    {
-        this.separationFactor = separationFactor;
-    }
+
 
     public void setRepulsion_distance(double repulsion_distance)
     {
@@ -307,4 +294,10 @@ public abstract class Lifeform extends Env_Entity
     {
         this.speed = speed;
     }
+
+    public static void setNeighbourLines(Boolean val)
+    {
+        neighbourLines = val;
+    }
+
 }

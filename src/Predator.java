@@ -5,6 +5,8 @@ import java.util.ArrayList;
  */
 public class Predator extends Lifeform
 {
+    private double cohesionFactor;
+    private double separationFactor;
     public Predator(Canvas canvas)
     {
         super(canvas);
@@ -12,8 +14,22 @@ public class Predator extends Lifeform
         this.setColour("Red");
         this.setSpeed(115);
 
-        this.setCohesionFactor(5);
-        this.setSeparationFactor(20);
+        this.cohesionFactor = 5;
+        this.separationFactor = 20;
+
+        this.setView_distance(100);
+        this.setRepulsion_distance(50);
+    }
+
+    public Predator(Canvas canvas, CartesianDouble position)
+    {
+        super(canvas, position);
+        this.setSize(15);
+        this.setColour("Red");
+        this.setSpeed(115);
+
+        this.cohesionFactor = 5;
+        this.separationFactor = 20;
 
         this.setView_distance(100);
         this.setRepulsion_distance(50);
@@ -80,7 +96,7 @@ public class Predator extends Lifeform
         }
 
         avgPos = CartesianVector.avgOfVec(posList).toCartesianDouble();
-        return this.getCurrentPosition().vecTo(avgPos).normalise(this.getCohesionFactor());
+        return this.getCurrentPosition().vecTo(avgPos).normalise(cohesionFactor);
     }
 
     protected CartesianVector calcSeparation()
@@ -112,7 +128,7 @@ public class Predator extends Lifeform
 
         totVec = CartesianVector.avgOfVec(vecList);
 
-        return totVec.normalise(this.getSeparationFactor());
+        return totVec.normalise(separationFactor);
     }
 
 }

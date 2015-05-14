@@ -24,8 +24,6 @@ import java.awt.geom.Line2D;
 public class Canvas extends JPanel {
 
     private int xSize, ySize;
-    private JPanel panel;
-    private String frameTitle = "";
     private List<LS> lines;
     private List<MyCircle> circles;
     private List<MyArc> arcs;
@@ -49,21 +47,14 @@ public class Canvas extends JPanel {
     public Canvas(int x, int y) {
         xSize = x;
         ySize = y;
-        frameTitle = "Canvas";
         lines = Collections.synchronizedList(new ArrayList<LS>());
         circles = Collections.synchronizedList(new ArrayList<MyCircle>());
         arcs = Collections.synchronizedList(new ArrayList<MyArc>());
-        setupCanvas();
+        this.setBorder(BorderFactory.createLoweredBevelBorder());
+        this.setBackground(Color.BLACK);
     }
 
-    private void setupCanvas() {
 
-        JFrame frame = new JFrame(frameTitle);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(this);
-        frame.pack();
-        frame.setVisible(true);
-    }
 
     @Override
     public Dimension getPreferredSize() {
