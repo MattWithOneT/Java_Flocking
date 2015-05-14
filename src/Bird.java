@@ -5,7 +5,9 @@ import java.util.ArrayList;
  */
 public class Bird extends Lifeform
 {
-    private static final double alignmentFactor = 10;
+    private static double alignmentFactor;
+    private static double separationFactor;
+    private static double cohesionFactor;
 
 /************************************************************************************
  * Instantiation Functions
@@ -14,11 +16,19 @@ public class Bird extends Lifeform
     public Bird(Canvas canvas)
     {
         super(canvas);
-        this.setCohesionFactor(5);
-        this.setSeparationFactor(20);
         this.setSpeed(75);
         this.setView_distance(75);
         this.setRepulsion_distance(25);
+        this.setColour("Green");
+    }
+
+    public Bird(Canvas canvas, CartesianDouble pos)
+    {
+        super(canvas, pos);
+        this.setSpeed(75);
+        this.setView_distance(75);
+        this.setRepulsion_distance(25);
+        this.setColour("Green");
     }
 
 /************************************************************************************
@@ -69,7 +79,7 @@ public class Bird extends Lifeform
 
         avgPos = CartesianVector.avgOfVec(posList).toCartesianDouble();
 
-        return this.getCurrentPosition().vecTo(avgPos).normalise(this.getCohesionFactor());
+        return this.getCurrentPosition().vecTo(avgPos).normalise(cohesionFactor);
     }
 
     protected CartesianVector calcSeparation()
@@ -108,7 +118,7 @@ public class Bird extends Lifeform
 
         totVec = CartesianVector.avgOfVec(vecList);
 
-        return totVec.normalise(this.getSeparationFactor());
+        return totVec.normalise(separationFactor);
     }
 
 
@@ -140,5 +150,19 @@ public class Bird extends Lifeform
         this.setVelocity(this.calcNewVelocity());
         this.updatePos(50);
         this.draw();
+    }
+
+    public static void setAlignmentFactor(double newAlignmentFactor)
+    {
+        alignmentFactor = newAlignmentFactor;
+    }
+
+    public static void setCohesionFactor(double newCohesionFactor)
+    {
+        cohesionFactor = newCohesionFactor;
+    }
+    public static void setSeparationFactor(double newSeparationFactor)
+    {
+        separationFactor = newSeparationFactor;
     }
 }
